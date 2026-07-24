@@ -168,38 +168,75 @@ db.usuarios.find({
 
 
 ```js
-
+db.usuarios.find({
+    edad: {
+        $gt: 33
+    }
+}) // Los usuarios que tengan arriba de 33 años
 ```
 
 ### $gte: Más grandes e iguales que..
 
 ```js
-
+db.usuarios.find({
+    edad: {
+        $gte: 33
+    }
+}) // Los usuarios que tengan arriba de 33 años incluido el 33
 ``` 
-
-### $in: Busca los elementos de la lista
-
-```js
-
-```
 
 ### $lt: Más chicos que...
 
 ```js
+db.usuarios.find({
+    edad: {
+        $lt: 33
+    }
+}) 
 ``` 
 
 ### $lte: Más chicos o iguales que...
 
 ```js
+db.usuarios.find({
+    edad: {
+        $lte: 33
+    }
+}) 
 ```
 
 ### $ne: No igual...
 
 ```js
+db.usuarios.find({
+    edad: {
+        $ne: 33
+    }
+}) 
+```
+
+### $in: Busca los elementos de la lista
+
+```js
+db.usuarios.find({
+    edad: {
+        $in: [10, 15, 50, 33, 23]
+    }
+}) 
 ```
 
 ### $nin: Busca los elementos contrarios a los del listad
 
 ```js
-
+db.usuarios.find({
+    edad: {
+        $in: [10, 15, 50, 33, 23]
+    }
+}) 
 ``` 
+
+## Operación lógicos
+
+<https://www.mongodb.com/es/docs/manual/reference/mql/query-predicates/logical/>
+
+### 
