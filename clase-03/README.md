@@ -361,5 +361,75 @@ db.productos.deleteMany({
 })
 ```
 
+> IMPORTANTE: No olvidar el filtro porque de olvidarse el filtro voy a borrar toda la colección.
+
 ## Método updateOne(): Me permite actualizar un documento
+
+```js
+db.productos.find({
+    categoria: 'Audio'
+})
+```
+
+### $set | $unset
+
+#### $set me permite modificar o agregar fields
+
+> Modificar
+
+```js
+db.productos.updateOne(
+    {
+        categoria: 'Audio'
+    },
+    {
+        $set: {
+            precio: 205
+        }
+    }
+)
+```
+
+```js
+db.productos.updateOne(
+    {
+        categoria: 'Audio'
+    },
+    {
+        $set: {
+            etiquetas: ['audio', 'música', 'tecnologia']
+        }
+    }
+)
+```
+
+#### $unset me permite borrar fields
+
+```js
+db.productos.find({
+    'proveedor.contacto': 'support@nippontech.jp'
+})
+
+db.productos.find({
+    _id: ObjectId('6a67991dbcda42398fabc120')
+})
+```
+
+```js
+db.productos.updateOne(
+    {
+         _id: ObjectId('6a67991dbcda42398fabc120')
+    },
+    {
+        $unset: {
+            'proveedor.contacto': 'support@nippontech.jp'
+        }
+    }
+)
+```
+
+
+
+
+
 ## Método updateMany(): Me permite actualizar uno o más documentos
