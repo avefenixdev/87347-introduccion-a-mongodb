@@ -428,8 +428,29 @@ db.productos.updateOne(
 )
 ```
 
-
-
-
-
 ## Método updateMany(): Me permite actualizar uno o más documentos
+
+```js
+db.productos.find({
+    precio: {
+        $lte: 100
+    }
+})
+```
+
+> Incremento el costo de envío en 1.2 dólares
+
+```js
+db.productos.updateMany(
+    {
+        precio: {
+            $lte: 100
+        }
+    },
+    {
+        $inc: {
+            'envio.costo': 1.2
+        }
+    }
+)
+```
