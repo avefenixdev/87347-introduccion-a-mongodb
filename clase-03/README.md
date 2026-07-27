@@ -548,4 +548,7 @@ Me permite recuperar backups (dumps) que hice con mongodump (Bases de datos comp
 
 ```sh
 mongorestore <options> <connection-string> <directory or file to restore>
+mongorestore --nsInclude=<base-datos>.<collection> ./dump
+mongorestore --nsInclude=mongo_87347.productos ./dump
+mongorestore --nsInclude=mongo_87347.* ./dump
 ```
