@@ -258,3 +258,70 @@ db.productos.insertMany([
   },
 ]);
 ``` 
+
+## Buscar dentro de documnentos anidados
+
+```js
+db.productos.find(
+    {
+        'proveedor.nombre': 'Nippon Electronics'
+    }
+)
+``` 
+
+## Métodos para contar la cantidad de documentos que nos arroja una query
+
+```js
+db.productos.find(
+    {
+        'envio.disponible': true
+    }
+).count()
+// -----------
+db.productos.find(
+    {
+        'envio.disponible': true
+    }
+).size()
+```
+
+# Operadores para trabajar con listas (arrays)
+
+## Operador $push: Me permite agregar elementos al final de una lista
+
+```js
+db.productos.find({
+    _id: ObjectId('6a67991dbcda42398fabc120')
+})
+
+// ----------
+db.productos.updateOne(
+    {
+        _id: ObjectId('6a67991dbcda42398fabc120')
+    },
+    {
+        $push: {
+            accesoriosIncluidos: 'Lapíz mágico'
+        }
+    }
+)
+```
+
+## Operador $pull: Me permite quitar el último elemento de la lista
+
+```js
+db.productos.find({
+    _id: ObjectId('6a67991dbcda42398fabc11d')
+})
+```
+
+```js
+db.productos.updateOne(
+    {
+        _id: ObjectId('6a67991dbcda42398fabc11d')
+    },
+    {
+        $pull: { materiales: 'Revestimiento cerámico' }
+    }
+)
+``` 
