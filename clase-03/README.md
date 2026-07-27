@@ -454,3 +454,77 @@ db.productos.updateMany(
     }
 )
 ```
+
+# Proyección en el find()
+Nos ver los fields que le digamos en la consulta. 
+
+> Ejemplo en DBs relacionales
+
+```sql
+select * from productos; -- Nos muestra todas las columnas de la tabla productos
+select nombre, categoria, precio from productos; -- Nos muestra solo las columnas que le deciamos.
+```
+
+```js
+db.productos.find({<filtro>}, {<proyección>})
+db.productos.find(
+    {}, 
+    {
+        marca: 0,
+        envio: 0,
+        proveedor: 0,
+        tallasDisponibles: 0,
+        coloresDisponibles: 0,
+        accesoriosIncluidos: 0,
+        opcionesDeAlmacenamiento: 0,
+        _id: 0
+    }
+)
+// ----------------
+db.productos.find(
+    {}, 
+    {
+       nombre: true,
+       precio: true,
+       stock: 0,
+       categoria: true,
+       _id: 0
+    }
+)
+```
+
+# Métodos de Mongo
+
+## limit(): Me permite limitar la cantidad de documentos que devuelve la consulta
+
+```js
+db.productos.find().limit(3)
+db.productos.find().limit(5)
+```
+
+## skip(): Me permite descartar documentos de las consultas.
+
+```js
+db.productos.find().skip(1) // Descarta solo 1 documento
+db.productos.find().skip(10) // Descarta los primeros 10
+```
+
+## sort(): Me permite ordenar la informa en forma ascendente y descendente
+
+```js
+db.usuarios.find({},{ _id: 0 }).sort({ edad: 1 }) // 1 -> asc (menor a mayor)
+db.usuarios.find({},{ _id: 0 }).sort({ edad: -1 }) // 1 -> desc (mayor a menor)
+```
+
+> Ejemplo de aplicación -> paginado
+
+```js
+db.productos.find().skip(0).limit(2) //los primeros 2 documentos
+db.productos.find().skip(2).limit(2) //los sengundos 2 documentos
+db.productos.find().skip(4).limit(2) 
+db.productos.find().skip(6).limit(2) 
+db.productos.find().skip(8).limit(2) 
+db.productos.find().skip(10).limit(2)
+```
+
+##
