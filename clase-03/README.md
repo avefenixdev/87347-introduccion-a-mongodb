@@ -325,3 +325,41 @@ db.productos.updateOne(
     }
 )
 ``` 
+
+# Operaciones CRUD con los documentos
+
+## Método find(): Me permite buscar 1 o varios documentos
+## Método findOne(): Me permite buscar un documento
+## Método insertOne(): Me permite agregar un documento
+## Método insertMany(): Me permite agregar uno o más documentos 
+## Método deleteOne(): Me permite borrar un documento
+Me permite dado un filtro eliminar un documento. El primero que encuentre según el filtro dado
+
+> IMPORTANTE: Siempre que quiera borrar documentos es preferible hacer un find para ver el resultado de la operación cuando haga el delete
+
+```js
+db.productos.findOne({
+    _id: ObjectId('6a67991dbcda42398fabc11d')
+})
+
+// ---------------
+db.productos.deleteOne({
+    _id: ObjectId('6a67991dbcda42398fabc11d')
+})
+```
+
+## Método deleteMany(): Me permite borrar una colección de documentos
+
+```js
+db.productos.find({
+    categoria: 'Electro'
+})
+
+/// ------------------
+db.productos.deleteMany({
+    categoria: 'Electro'
+})
+```
+
+## Método updateOne(): Me permite actualizar un documento
+## Método updateMany(): Me permite actualizar uno o más documentos
