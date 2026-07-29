@@ -141,7 +141,7 @@ IMPORTANTE: Ocurre todo dentro del motor de Mongo.
 > Categorias
 
 ```js
-[
+db.categorias.insertMany([
   {
     "_id": ObjectId("64f100000000000000000001"),
     "nombre": "Notebooks",
@@ -157,13 +157,13 @@ IMPORTANTE: Ocurre todo dentro del motor de Mongo.
     "nombre": "Periféricos",
     "activo": true
   }
-]
+])
 ```
 
-> Colección productos
+> Colección artículos
 
 ```sh
-[
+db.articulos.insertMany([
   {
     "_id": ObjectId("64f200000000000000000001"),
     "nombre": "Notebook Lenovo",
@@ -208,13 +208,13 @@ IMPORTANTE: Ocurre todo dentro del motor de Mongo.
       "pais": "Suiza"
     }
   }
-]
+])
 ```
 
 > Clientes
 
 ```js
-[
+db.clientes.insertMany([
     {
         "_id":ObjectId("64f300000000000000000001"),
         "nombre":"Juan Pérez",
@@ -322,5 +322,5 @@ IMPORTANTE: Ocurre todo dentro del motor de Mongo.
         "telefonos":[{"tipo":"Celular","numero":"101010101"}],
         "preferencias":{"newsletter":false,"categoriasFavoritas":[ObjectId("64f100000000000000000002")]}
     }
-]
+])
 ```
