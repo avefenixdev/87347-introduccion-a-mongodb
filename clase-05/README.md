@@ -560,3 +560,94 @@ db.clientes.aggregate([
     }
 ])
 ```
+
+# Trabajando con archivos csv y json
+
+# Extensión CSV
+- mechatroner.rainbow-csv
+
+## Mongo Import (Mongo Database Tools)
+
+<https://www.mongodb.com/es/docs/database-tools/mongoimport/>
+
+```sh
+mongoimport <options> <connection-string> <file>
+mongoimport --db=mongo_87347 --collection=perfiles --jsonArray --file=perfiles.json
+mongoimport --db=mongo_87347 --collection=users --headerline --type=csv --file=usuarios.csv
+```
+
+## Mongo Export (Mongo Database Tools)
+
+<https://www.mongodb.com/es/docs/database-tools/mongoexport/>
+
+```sh
+mongoexport --collection=<coll> <options> <connection-string>
+mongoexport --db=mongo_87347 --collection=ventas --type=json --out=ventas.json
+
+mongoexport --db=mongo_87347 --collection=ventas --type=csv --fields="cliente,producto,_id,importe,fecha" --out=ventas.csv
+```
+
+# Índices (indexes)
+
+Son estructuras que permiten acceder y buscar los datos de manera eficiente y muy rápida. Esto es igual para todas las bases de datos.
+
+![indices](_ref/creacion-indice.png)
+
+<https://www.mongodb.com/docs/manual/indexes/>
+
+## Índice simple
+Se crea a partir de un único field
+
+<https://www.mongodb.com/docs/manual/core/indexes/index-types/index-single/#std-label-indexes-single-field>
+
+```js
+db.indices.find({ nombre: 'nombre_444444'})
+```
+
+## Índice compuesto
+Se crea a partir de una combinación de fields. Optimiza consultas que involucran varios campos a la vez. El orden de los fields importa.
+
+
+```js
+print('Creando 800.000 documentos');
+
+for (let i = 0; i < 800_000; i++) {
+    if ( i % 10_000 === 0) print('--> ' + i + ' documentos insertados');
+
+    db.indices.insertOne(
+        {
+            nombre: 'nombre_' + i,
+            edad: i % 100,
+            fecha: new Date()
+        }
+    )
+} 
+```
+
+# CURSORES (Cursors) -> Es un objeto
+El cursor es un elemento que me permite ir obteniendo todos los documentos de una query, no de forma completa, sino de a paquetes (batches) de documentos. O sea obtener documentos de forma perezosa (Lazy). El cursor una vez consumido, no tiene más información. Se agoto (se queda sin info). Para volver a llenar el cursor tengo que volver a ejecutar la query (consulta).
+
+![cursor](_ref/cursors.png)
+
+```js
+for (let i = 1; i <= 100; i++) {
+    db.archivos.insertOne(
+        {
+            archivo_id: i,
+            nombre: 'archivo_' + i,
+            create_at: new Date()
+        }
+    )
+} 
+```
+
+Por defecto el cursor me entrega paquetes de 20 documentos por vez.
+
+```js
+const cursor = db.indices.find()
+cursor.limit(5)
+
+cursor.forEach(doc => {
+    console.log(doc)
+})
+```

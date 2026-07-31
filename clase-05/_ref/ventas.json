@@ -1,0 +1,5 @@
+{"_id":{"$oid":"6a6a4bf77b3b9315a6abc114"},"cliente":"Ana","producto":"Notebook","importe":1250,"fecha":{"$date":"2025-12-15T13:30:00Z"}}
+{"_id":{"$oid":"6a6a4bf77b3b9315a6abc115"},"cliente":"Luis","producto":"Mouse","importe":35,"fecha":{"$date":"2026-01-10T17:45:00Z"}}
+{"_id":{"$oid":"6a6a4bf77b3b9315a6abc116"},"cliente":"María","producto":"Teclado","importe":80,"fecha":{"$date":"2026-02-05T12:15:00Z"}}
+{"_id":{"$oid":"6a6a4bf77b3b9315a6abc117"},"cliente":"Carlos","producto":"Monitor","importe":420,"fecha":{"$date":"2026-02-20T20:20:00Z"}}
+{"_id":{"$oid":"6a6a4bf77b3b9315a6abc118"},"cliente":"Sofía","producto":"Auriculares","importe":95,"fecha":{"$date":"2026-03-12T14:00:00Z"}}
